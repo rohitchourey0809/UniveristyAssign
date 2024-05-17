@@ -1,8 +1,11 @@
 University assign
 
+
+Go for a backend folder
 for backend node index.js to run
 
 
+Go for a frontend folder
 for frontend npm run start to run take on different port (3001) 
 
 
