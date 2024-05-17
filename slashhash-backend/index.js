@@ -5,11 +5,26 @@ const cors = require("cors");
 const db = require("./db");
 
 const app = express();
-const PORT = 8000;
+const PORT = 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Proxy endpoint to search universities
+app.get("/api/search", async (req, res) => {
+  try {
+    const response = await axios.get(
+      `http://universities.hipolabs.com/search`,
+      {
+        params: req.query,
+      }
+    );
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).send(error.toString());
+  }
+});
 
 // Endpoint to save favourite university
 app.post("/api/favourites", (req, res) => {
